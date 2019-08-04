@@ -20,16 +20,49 @@
 <center>
 <div class="container">
 <h2 class="text-center" style="color:#1f87ff; margin-top: 60px">Search Your Word</h2>
+    <div style="width: 550px; text-align: left;">
+        <form action="" method="GET" style="margin-top: 120px;">
+            <div style="vertical-align: middle;">
+                <input type="text" class="form-control" id="search-box" name="word" placeholder="Search here" style="width: 445px; display: inline-block;">
+            </div>
+            <div id="results" style="width: 445px; padding-left: 10px;">
 
-    <form action="" method="GET" style="margin-top: 120px">
-        <div class="form-group">
-            <input type="text" class="form-control" id="search-box" name="word" placeholder="Search here" style="width: 46%;">
-            <input type="button" class="btn btn-primary" id="button" value="Search">
-        </div>
-    </form>
+            </div>
+        </form>
+    </div>
 
 </div>
 </center>
+
+<script>
+$(document).ready(function(){
+    $('#search-box').on('keyup', function(event){
+        var input=event.target.value;
+        if(input.length>0){
+            $.ajax({
+                url: '/search',
+                method: 'GET',
+                data: {word: input},
+                success: function(data){
+                    $('#results').empty();
+                    data.search_result.forEach((word,index) => {
+                        // console.log(word);
+                        var div=document.createElement('div');
+                        div.innerHTML=word;
+                        div.addEventListener('click', e => {
+                            $('#search-box').val(e.target.innerHTML);
+                            $('#results').empty();
+                        });
+                        div.setAttribute('style','font-size: 18px;');
+                        $('#results').append(div);
+                    });
+                }
+            });
+        }
+    });
+});
+</script>
+
 </body>
 
 </html>

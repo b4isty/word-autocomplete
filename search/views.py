@@ -1,11 +1,10 @@
-from django.shortcuts import render
+import requests
+from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render
-from django.db.models import Q
+from django.shortcuts import reverse, redirect
+
 from .models import Vocabulary
-
-
-# Create your views here.
 
 
 def search(request):
@@ -32,4 +31,3 @@ def search_word(request):
         return JsonResponse({"search_result": data}, safe=False)
     else:
         return JsonResponse({"message": "kindly send ajax request"}, status=400)
-
