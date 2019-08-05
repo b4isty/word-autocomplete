@@ -20,7 +20,7 @@ source venv_name/bin/activate
 ```
 Clone this repo to your machine using
 ```bash
-git clone https://github.com/b4isty/event-tracking-api.git
+git clone https://github.com/b4isty/word-autocomplete.git
 ```
 Install requirements.txt file
 ```bash
@@ -38,3 +38,4 @@ To run this project use this command
 ```bash
 python manage.py runserver
 ```
+
